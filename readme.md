@@ -46,7 +46,8 @@ URL Gravy has a lightweight command line interface for all major shortening-rela
 ### Endpoints
 
 The `serve` command exposes two endpoints: 
-1. POST requests to **/shorten_url** execute the shortening process with the usual parameter structure ('target' - required; 'suffix' - optional)
+1. POST requests to **/shorten_url** execute the shortening process. The payload must contain a 'target' value and an optional 'suffix' value. A 'short_url' value is contained in the response json object.
+
 2. GET requests to **/[suffix]** redirect to the configured target URL
 
 ## Notes
