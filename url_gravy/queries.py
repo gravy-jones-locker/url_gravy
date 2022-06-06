@@ -1,0 +1,18 @@
+from config import MAX_SUFFIX_LEN
+
+CONFIGURE_TABLE_SQL = f'''
+CREATE TABLE {{table_name}}(
+    id int NOT NULL AUTO_INCREMENT,
+    suffix VARCHAR({MAX_SUFFIX_LEN}) NOT NULL UNIQUE,
+    target VARCHAR(255) NOT NULL,
+    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);'''
+
+CREATE_RECORD_SQL = 'INSERT INTO urls (suffix, target) VALUES (%s, %s);'
+
+DELETE_RECORDS_SQL = 'DELETE FROM urls {condition};'
+
+GET_LAST_RECORD_SQL = 'SELECT * FROM urls ORDER BY id DESC LIMIT 1;'
+
+GET_RECORDS_SQL = 'SELECT * FROM urls {condition};'
