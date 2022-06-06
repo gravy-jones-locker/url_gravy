@@ -7,18 +7,20 @@ Use the `pipenv` package (`pip install pipenv`) to configure the required depend
     $ pipenv shell
     (url_gravy) $ pipenv install
 
-URL Gravy requires a connection to a working MySQL database. Database settings are defined by the _DB_SETTINGS_ configuration value. The 'urls' and urls_test' tables can then be created with the `setup` command (see below).
+URL Gravy requires a connection to a working MySQL database. Connection settings are defined by the **DB_SETTINGS** configuration value.
+
+The 'urls' and urls_test' tables can then be created with the `setup` command (see below).
 
 ## Configuration
 
 Package-level configuration values are defined in `config.py`.
 
-1. _BASE_URL_ - the value which will prefix all the shortened URLs
-2. _HOST_ - the webapp host server ip
-3. _PORT_ - the webapp host server port
-4. _DB_SETTINGS_ - a dictionary of database/user values
-5. _MAX_SUFFIX_LEN_ - defines the length of the database 'suffix' field
-6. _AUTO_SUFFIX_LEN_ - defines the length of auto-generated suffixes
+1. **BASE_URL** - the value which will prefix all the shortened URLs
+2. **HOST** - the webapp host server ip
+3. **PORT** - the webapp host server port
+4. **DB_SETTINGS** - a dictionary of database/user values
+5. **MAX_SUFFIX_LEN** - defines the length of the database 'suffix' field
+6. **AUTO_SUFFIX_LEN** - defines the length of auto-generated suffixes
 
 ## Usage
  
@@ -49,8 +51,8 @@ The `serve` command exposes two endpoints:
 
 ## Notes
 
-URL Gravy uses the `short_url` package to auto-generate suffixes where one is not supplied. This package leverages integer values to form deterministic alphanumeric scrambles of a specified length.
+URL Gravy uses the `short_url` package to auto-generate suffixes where one is not supplied. This package uses integer values to form deterministic alphanumeric scrambles of a specified length.
 
-By using an auto-incrementing database id field to form these scrambles they are guaranteed to be unique for each corresponding record. Assuming a scramble length of 7 characters and an alphabet of 31 characters (the default) this should provide up to **27,512,614,111** unique URLs.
+By using an auto-incrementing database id field these scrambles are guaranteed to be unique for each corresponding record. Assuming a scramble length of 7 characters and an alphabet of 31 characters (the default) this should provide up to **27,512,614,111** unique URLs.
 
 Where suffixes are supplied they are subject to two checks. First, that they do not fall in the set of possible auto-generated URLs and second that they have not already been supplied by other users.
