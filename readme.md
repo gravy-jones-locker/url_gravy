@@ -41,7 +41,7 @@ URL Gravy has a lightweight command line interface for all major shortening-rela
     (url_gravy) $ python main.py delete [--before_date=YYYYMMDD]
 
     Retrieve existing records meeting certain criteria
-    (url_gravy) $ python main.py inspect [--suffix=google_pls --target=https://google.com id=1]
+    (url_gravy) $ python main.py inspect [--suffix=google_pls --target=https://google.com --id=1]
 
 ### Endpoints
 
