@@ -1,12 +1,12 @@
 BASE_URL = 'http://gravyjoneslocker.uk'
 
-HOST = '0.0.0.0'
+HOST = '127.0.0.1'
 PORT = 8000
 
 DB_SETTINGS = {
     "host": "localhost",
     "user": "gravy",
-    "password": "",
+    "password": "test123",
     "db": "url_gravy",
     }
 
