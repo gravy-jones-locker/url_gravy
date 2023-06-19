@@ -7,18 +7,17 @@ Use the `pipenv` package (`pip install pipenv`) to configure the required depend
     $ pipenv shell
     (url_gravy) $ pipenv install
 
-URL Gravy requires a connection to a working MySQL database. Connection settings are defined by the **DB_SETTINGS** configuration value.
+`.env_example` should be renamed to `.env` and appropriate values set before use.
 
-The 'urls' and urls_test' tables can then be created with the `setup` command (see below).
+URL Gravy connects to an sqlite db file. This can be configured using the `setup` command (see below).
 
 ## Configuration
 
-Package-level configuration values are defined in `config.py`.
+Package-level configuration values are defined in `.env`.
 
-1. **BASE_URL** - the value which will prefix all the shortened URLs
-2. **HOST** - the webapp host server ip
-3. **PORT** - the webapp host server port
-4. **DB_SETTINGS** - a dictionary of database/user values
+2. **APP_HOST** - the webapp host server ip
+3. **APP_PORT** - the webapp host server port
+4. **DB_HOST** - the sqlite database host value (e.g. `sqlite:///./database.db`)
 5. **MAX_SUFFIX_LEN** - defines the length of the database 'suffix' field
 6. **AUTO_SUFFIX_LEN** - defines the length of auto-generated suffixes
 
@@ -38,7 +37,7 @@ URL Gravy has a lightweight command line interface for all major shortening-rela
     (url_gravy) $ python main.py serve
 
     Delete records (before the specified data)
-    (url_gravy) $ python main.py delete [--before_date=YYYYMMDD]
+    (url_gravy) $ python main.py delete [--before_date=YYYY-MM-DD]
 
     Retrieve existing records meeting certain criteria
     (url_gravy) $ python main.py inspect [--suffix=google_pls --target=https://google.com --id=1]

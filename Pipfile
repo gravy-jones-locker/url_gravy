@@ -10,6 +10,8 @@ short-url = "*"
 uvicorn = "*"
 requests = "*"
 pytest = "*"
+sqlalchemy = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

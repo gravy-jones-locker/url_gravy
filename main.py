@@ -1,12 +1,9 @@
 import sys
-import uvicorn
 
 from pprint import pprint as pp
 
-from config import HOST, PORT
-from url_gravy.database import Database
-from url_gravy.shortener import Shortener
-from url_gravy.webapp import app
+from url_gravy import shorten, crud, app
+
 
 def parse_args():
     cmd = sys.argv[1]
@@ -19,15 +16,15 @@ def parse_args():
 if __name__ == '__main__':
     cmd, kwargs = parse_args()
     if cmd == 'setup':
-        Database().configure_tables()
-        print('Tables configured')
+        crud.create_redirect_table()
+        print('Table configured')
     if cmd == 'serve':
-        uvicorn.run(app, host=HOST, port=PORT)
+        app.serve()
     if cmd == 'shorten':
-        url = Shortener().execute(**kwargs)
+        url = shorten.execute(**kwargs)
         print(f'URL successfully shortened to {url}')
     if cmd == 'delete':
-        Database().delete_records(**kwargs)
+        crud.delete_redirects(**kwargs)
         print('Records deleted')
     if cmd == 'inspect':
-        pp(Database().get_records(**kwargs))
+        pp([x.__dict__ for x in crud.get_redirects(filters=kwargs)])
