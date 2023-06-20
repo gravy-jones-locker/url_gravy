@@ -56,3 +56,19 @@ URL Gravy uses the `short_url` package to auto-generate suffixes where one is no
 By using an auto-incrementing database id field these scrambles are guaranteed to be unique for each corresponding record. Assuming a scramble length of 7 characters and an alphabet of 31 characters (the default) this should provide up to **27,512,614,111** unique URLs.
 
 Where suffixes are supplied they are subject to two checks. First, that they do not fall in the set of possible auto-generated URLs and second that they have not already been supplied by other users.
+
+### FourJaw Changelog
+
+1. **Implemented ORM**: rather than interacting directly with a MySQL db server I implemented an ORM (SQLAlchemy). This allows the user to treat records as Python objects, which makes the package substantially more flexible and concise.
+
+2. **Removed `Shortener` class**: this was an unnecessarily literal object-oriented design feature. The class never had a state and its methods were inaccessible without first creating an instance.
+
+3. **Leveraged core library components**: for frequently-used patterns I used the implementations from a core library written as part of my work at LUSH. These include:
+    - The `@supply_session` decorator, which manages db session lifetimes (initialisation/closure)
+    - The `@multi_getter` decorator, which simplifies retrieval of multiple objects from a table by exposing common parameters like pagination or filters
+
+4. **Switched to SQLite**: using a local `.db` sqlite file simplifies the database integration significantly.
+
+5. **Used `.env` to configure environment variables**: this is a more elegant pattern than importing constants from a Python module.
+
+6. **Standardised formatting**: I made minor tweaks including consistent import levels and adding new lines at the end of each file to prevent misleading diffs
